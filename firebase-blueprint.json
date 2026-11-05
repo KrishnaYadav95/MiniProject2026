@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "admin": {
+      "title": "Admin Credential",
+      "description": "Administrator account credentials and permissions",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique admin account ID"
+        },
+        "username": {
+          "type": "string",
+          "description": "Unique administrator username"
+        },
+        "email": {
+          "type": "string",
+          "description": "Administrator email address"
+        },
+        "passwordHash": {
+          "type": "string",
+          "description": "Stored credential password for verification"
+        },
+        "name": {
+          "type": "string",
+          "description": "Administrator full name"
+        },
+        "authority": {
+          "type": "string",
+          "description": "Spring Security granted authority (ROLE_ADMIN)"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Account registration timestamp"
+        },
+        "lastLogin": {
+          "type": "string",
+          "description": "Last authenticated login timestamp"
+        },
+        "status": {
+          "type": "string",
+          "description": "Account status (active or suspended)"
+        },
+        "failedAttempts": {
+          "type": "number",
+          "description": "Consecutive failed login counter"
+        }
+      },
+      "required": ["id", "username", "email", "passwordHash", "authority", "status"]
+    },
+    "user": {
+      "title": "Store User",
+      "description": "Customer account profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "authority": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role", "authority"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": "admin",
+      "description": "Collection of verified administrator credentials"
+    },
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "Collection of store users and customers"
+    }
+  }
+}
